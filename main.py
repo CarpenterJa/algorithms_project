@@ -1,12 +1,8 @@
-# Python program for Kruskal's algorithm to find
-# Minimum Spanning Tree of a given connected,
-# undirected and weighted graph
- 
 from collections import defaultdict
  
 # Class to represent a graph
  
- 
+# Graph class comes from https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
 class Graph:
  
     def __init__(self, vertices):
@@ -15,8 +11,8 @@ class Graph:
         # to store graph
  
     # function to add an edge to graph
-    def addEdge(self, u, v, w):
-        self.graph.append([u, v, w])
+    def addEdge(self, rootNode, nodeToLink, weight):
+        self.graph.append([rootNode, nodeToLink, weight])
  
     # A utility function to find set of an element i
     # (uses path compression technique)
@@ -98,15 +94,17 @@ class Graph:
             print("%d -- %d == %d" % (u, v, weight))
         print("Minimum Spanning Tree" , minimumCost)
  
-# Driver code
-g = Graph(4)
-g.addEdge(0, 1, 10)
-g.addEdge(0, 2, 6)
-g.addEdge(0, 3, 5)
-g.addEdge(1, 3, 15)
-g.addEdge(2, 3, 4)
+# #Driver code
+# g = Graph(4)
+# g.addEdge(0, 1, 10)
+# g.addEdge(0, 2, 6)
+# g.addEdge(0, 3, 5)
+# g.addEdge(1, 3, 15)
+# g.addEdge(2, 3, 4)
  
+totalNodes = 8
+g = Graph(totalNodes)
+
+
 # Function call
 g.KruskalMST()
- 
-# This code is contributed by Neelam Yadav
