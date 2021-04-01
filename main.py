@@ -225,8 +225,8 @@ if __name__ == "__main__":
 
     # Print shortest path between node 1 and 10
     print("\nNodes to pass through for path 0 to 10")
-    path = FWTraversial.getPathFor(5,6)
+    path = FWTraversial.getPathFor(0,10)
     for vertex in path:
         print(vertex)
 
-    print(FWTraversial.getLengthOfPath(g,5,6))
+    print(FWTraversial.getLengthOfPath(g,0,10))
