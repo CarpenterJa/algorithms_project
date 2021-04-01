@@ -146,7 +146,17 @@ class FloydWarshallTraverisal():
         print("Min Distance: \n" + str(min_distance))
         print("Optimal Path:")
         print(optimal_path)
+        return optimal_path
 
+    def print_final_path(self, must_past_list):
+        total_path = []
+        for index, elem in enumerate(must_past_list):
+            if (index + 1 < len(must_past_list)):
+                next_el = must_past_list[index + 1]
+                total_path.append(self.getPathFor(elem, next_el))
+        print(total_path)
+        #for vertex in total_path:
+            #print(vertex)
 
     def get_distance_between_verticies(self, vertex, link):
         return self.distances[vertex][link]
@@ -241,6 +251,6 @@ if __name__ == "__main__":
         #print(vertex)
 
     print(FWTraversial.get_distance_between_verticies(6, 12))
-    FWTraversial.nodePermutation(groceryList)
+    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryList))
 
 
