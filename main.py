@@ -105,6 +105,8 @@ class Graph:
 class FloydWarshallTraverisal():
     distances = None
     nextVert = None
+    normPrintWidth = 7
+    newLinePrintWidth = 3
 
     def __init__(self, numVerticies):
         #numVerticies = numVerticies - 1
@@ -127,7 +129,6 @@ class FloydWarshallTraverisal():
                 self.nextVert[i][q] = None
 
     def findShortestPairs(self, graph):
-        print(Graph.GraphEnums.VERTEX.value)
         for edge in graph.graph:
             u = edge[Graph.GraphEnums.VERTEX.value]
             v = edge[Graph.GraphEnums.LINK.value]
@@ -147,28 +148,38 @@ class FloydWarshallTraverisal():
                         self.nextVert[i][j] = self.nextVert[i][k]
     
     def findShortestPath(self, numVerticies):
-        print("Following matrix shows the shortest distances between every pair of vertices")
+        print("Matrix shows the distance from each node to another")
+        print("*INF means no path between those nodes*\n")
+
+        # Print matrix header of vertex number
         for i in range(numVerticies):
+            if i == 0:
+                print("{0: >{width}}".format(i,width = (self.normPrintWidth + self.newLinePrintWidth-1)),end='') 
+            else:
+                print("{0: >{width}}".format(i,width = self.normPrintWidth),end='') 
+
+        # Draw line across top
+        print("\n"+ "-"* (self.newLinePrintWidth-1) + "-"*self.normPrintWidth * numVerticies)
+
+        tempSpacing = self.normPrintWidth
+        for i in range(numVerticies):
+            # Draw vertical line at each new line
+            print("{0: >3} | ".format(i),end="")
+            firstOnLine = True
             for j in range(numVerticies):
+                if firstOnLine:
+                    # Do a different print line to fix spacing
+                    tempSpacing = self.newLinePrintWidth
+                    firstOnLine = False
+                else:
+                    tempSpacing = self.normPrintWidth
+
                 if(self.distances[i][j] == math.inf):
                     # Print without new line
-                    print("{0: >7}".format("INF"),end='')
-                    #print("%5s" % ("INF"),end='')
+                    print("{0: >{width}}".format("INF", width = tempSpacing),end='')
                 else:
-                    print("{0: >7}".format(self.distances[i][j]),end='')
-                    #print("%4d" % (self.distances[i][j]), end='')
+                    print("{0: >{width}}".format(self.distances[i][j], width = tempSpacing),end='')
             print("")       
-        
-        # u = edge[Graph.GraphEnums.VERTEX]
-        # v = edge[Graph.GraphEnums.LINK]
-        # if self.nextVert[u][v] == None:
-        #     return None
-        
-        # path = [u]
-        # while not(u == v):
-        #     u = self.nextVert[u][v]
-        #     path.append(u)
-        # return path
 
 #------------------------------------------------------------------------------        
 # Only run code if main called this file
