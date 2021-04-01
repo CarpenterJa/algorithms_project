@@ -28,6 +28,34 @@ class Graph:
 
     def getNumVerticies(self):
         return self.V
+
+    def getEdgesForVertex(self, vertex):
+        if(vertex > self.V):
+            return None
+
+        edges = []
+        for edge in self.graph:
+            # Check if the vertex of the edge is what we are looking for
+            if edge[self.GraphEnums.VERTEX.value] == vertex or \
+               edge[self.GraphEnums.LINK.value] == vertex:
+                # Add thie edge to the list of edges
+                edges.append(edge)
+
+        return edges
+
+    def getEdgeLength(self, vertex, link) :
+        edges = self.getEdgesForVertex(vertex)
+
+        # Possible options for each edge
+        # [vertex,link,weight]
+        # [link,vertex,weight]
+        
+        for edge in edges:
+            if (edge[self.GraphEnums.VERTEX.value] == vertex and edge[self.GraphEnums.LINK.value] == link) or \
+               (edge[self.GraphEnums.VERTEX.value] == link and edge[self.GraphEnums.LINK.value] == vertex):
+                return edge[self.GraphEnums.WEIGHT.value]
+
+        return -1
  
 class FloydWarshallTraverisal():
     #https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
@@ -121,13 +149,20 @@ class FloydWarshallTraverisal():
 
         return path
 
-    # def getLengthOfPath(self, startVert, endVert):
-    #     # Get path
-    #     path = self.getPathFor(startVert,endVert)
-    #     if not(path == None):
-    #         totalDist = 0
-    #         for step in path:
-    #             totalDist = totalDist + 
+    def getLengthOfPath(self, graph, startVert, endVert):
+        # Get path
+        # path = self.getPathFor(startVert,endVert)
+        # if not(path == None):
+        #     totalDist = 0
+        #     for i in range(len(path))
+        #     for step in path:
+        #         totalDist = totalDist + graph.getEdgeLength()
+            
+        #     return totalDist
+        
+        # return -1
+
+        return self.distances[startVert][endVert]
 
 
 
@@ -178,6 +213,8 @@ if __name__ == "__main__":
     # Add links for node 11
     g.addEdge(11,12,15)
 
+    print(g.getEdgeLength(0,1))
+
     FWTraversial = FloydWarshallTraverisal(g.getNumVerticies())
 
     # Find all the shortest pairs
@@ -187,6 +224,9 @@ if __name__ == "__main__":
     FWTraversial.findShortestPath(g.getNumVerticies())
 
     # Print shortest path between node 1 and 10
-    path = FWTraversial.getPathFor(0,10)
+    print("\nNodes to pass through for path 0 to 10")
+    path = FWTraversial.getPathFor(5,6)
     for vertex in path:
         print(vertex)
+
+    print(FWTraversial.getLengthOfPath(g,5,6))
