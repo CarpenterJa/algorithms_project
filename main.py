@@ -1,6 +1,8 @@
 from collections import defaultdict
 import math
 from enum import Enum
+from itertools import permutations
+
 # Class to represent a graph
  
 # Graph class comes from https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
@@ -122,9 +124,31 @@ class FloydWarshallTraverisal():
         return path
 
     def nodePermutation(self, mustPassNodesList):
+        list_of_permutations = list(permutations(mustPassNodesList))
+        list_of_permutations = [list(ele) for ele in list_of_permutations]
+        total_distance = 0
+        min_distance = math.inf
+        print("Distances of Paths:")
+        for p in list_of_permutations:
+            p.insert(0,0)
+            p.append(13)
+            for index, elem in enumerate(p):
+                if (index + 1 < len(p)):
+                    next_el = p[index + 1]
+                    total_distance += self.get_distance_between_verticies(elem, next_el)
+            if(total_distance < min_distance):
+                min_distance = total_distance
+                optimal_path = p
+            print(str(total_distance))
+            total_distance = 0
+        print("List of Permutations:")
+        print(list_of_permutations)
+        print("Min Distance: \n" + str(min_distance))
+        print("Optimal Path:")
+        print(optimal_path)
 
 
-    def getLength(self, vertex, link):
+    def get_distance_between_verticies(self, vertex, link):
         return self.distances[vertex][link]
 
     # def getLengthOfPath(self, startVert, endVert):
@@ -201,7 +225,7 @@ if __name__ == "__main__":
     g.addEdge(11, 12, 15)
     g.addEdge(12, 11, 15)
 
-    groceryList = [0, 8, 13]
+    groceryList = [9, 5, 12]
     FWTraversial = FloydWarshallTraverisal(g.getNumVerticies())
 
     # Find all the shortest pairs
@@ -211,11 +235,12 @@ if __name__ == "__main__":
     FWTraversial.findShortestPath(g.getNumVerticies())
 
     # Print shortest path between node 1 and 10
-    path = FWTraversial.getPathFor(6, 12)
+    #path = FWTraversial.getPathFor(0, 9)
 
-    for vertex in path:
-        print(vertex)
+    #for vertex in path:
+        #print(vertex)
 
-    print(FWTraversial.getLength(6, 12))
+    print(FWTraversial.get_distance_between_verticies(6, 12))
+    FWTraversial.nodePermutation(groceryList)
 
 
