@@ -152,9 +152,11 @@ class FloydWarshallTraverisal():
             for j in range(numVerticies):
                 if(self.distances[i][j] == math.inf):
                     # Print without new line
-                    print("%8s" % ("INF"),end='')
+                    print("{0: >7}".format("INF"),end='')
+                    #print("%5s" % ("INF"),end='')
                 else:
-                    print("%7d\t" % (self.distances[i][j]), end='')
+                    print("{0: >7}".format(self.distances[i][j]),end='')
+                    #print("%4d" % (self.distances[i][j]), end='')
             print("")       
         
         # u = edge[Graph.GraphEnums.VERTEX]
