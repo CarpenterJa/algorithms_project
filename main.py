@@ -1,6 +1,8 @@
 from collections import defaultdict
 import math
 from enum import Enum
+from itertools import permutations
+
 # Class to represent a graph
  
 # Graph class comes from https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
@@ -149,20 +151,51 @@ class FloydWarshallTraverisal():
 
         return path
 
-    def getLengthOfPath(self, graph, startVert, endVert):
-        # Get path
-        # path = self.getPathFor(startVert,endVert)
-        # if not(path == None):
-        #     totalDist = 0
-        #     for i in range(len(path))
-        #     for step in path:
-        #         totalDist = totalDist + graph.getEdgeLength()
-            
-        #     return totalDist
-        
-        # return -1
+    def nodePermutation(self, mustPassNodesList):
+        list_of_permutations = list(permutations(mustPassNodesList))
+        list_of_permutations = [list(ele) for ele in list_of_permutations]
+        total_distance = 0
+        min_distance = math.inf
+        print("Distances of Paths:")
+        for p in list_of_permutations:
+            p.insert(0,0)
+            p.append(13)
+            for index, elem in enumerate(p):
+                if (index + 1 < len(p)):
+                    next_el = p[index + 1]
+                    total_distance += self.get_distance_between_verticies(elem, next_el)
+            if(total_distance < min_distance):
+                min_distance = total_distance
+                optimal_path = p
+            print(str(total_distance))
+            total_distance = 0
+        print("List of Permutations:")
+        print(list_of_permutations)
+        print("Min Distance: \n" + str(min_distance))
+        print("Optimal Path:")
+        print(optimal_path)
+        return optimal_path
 
-        return self.distances[startVert][endVert]
+    def print_final_path(self, must_past_list):
+        total_path = []
+        for index, elem in enumerate(must_past_list):
+            if (index + 1 < len(must_past_list)):
+                next_el = must_past_list[index + 1]
+                total_path.append(self.getPathFor(elem, next_el))
+        print(total_path)
+        #for vertex in total_path:
+            #print(vertex)
+
+    def get_distance_between_verticies(self, vertex, link):
+        return self.distances[vertex][link]
+
+    # def getLengthOfPath(self, startVert, endVert):
+    #     # Get path
+    #     path = self.getPathFor(startVert,endVert)
+    #     if not(path == None):
+    #         totalDist = 0
+    #         for step in path:
+    #             totalDist = totalDist + 
 
 
 
@@ -173,48 +206,64 @@ if __name__ == "__main__":
     g = Graph(totalNodes)
 
     # Starting node
-    g.addEdge(0,1,20)
+    g.addEdge(0, 1, 20)
+    g.addEdge(1, 0, 20)
 
     # Add links for node 1
-    g.addEdge(1,13,15)
-    g.addEdge(1,2,15)
-    g.addEdge(1,5,10)
+    g.addEdge(1, 13, 15)
+    g.addEdge(1, 2, 15)
+    g.addEdge(1, 5, 10)
+    g.addEdge(13, 1, 15)
+    g.addEdge(2, 1, 15)
+    g.addEdge(5, 1, 10)
 
     # Add links for node 2
-    g.addEdge(2,6,10)
-    g.addEdge(2,3,15)
+    g.addEdge(2, 6, 10)
+    g.addEdge(2, 3, 15)
+    g.addEdge(6, 2, 10)
+    g.addEdge(3, 2, 15)
 
     # Add links for node 3
-    g.addEdge(3,4,15)
-    g.addEdge(3,7,10)
+    g.addEdge(3, 4, 15)
+    g.addEdge(3, 7, 10)
+    g.addEdge(4, 3, 15)
+    g.addEdge(7, 3, 10)
 
     # Add links for node 4
-    g.addEdge(4,8,10)
+    g.addEdge(4, 8, 10)
+    g.addEdge(8, 4, 10)
 
     # Add links for node 5
-    g.addEdge(5,9,10)
+    g.addEdge(5, 9, 10)
+    g.addEdge(9, 5, 10)
 
     # Add links for node 6
-    g.addEdge(6,10,10)
+    g.addEdge(6, 10, 10)
+    g.addEdge(10, 6, 10)
 
     # Add links for node 7
-    g.addEdge(7,11,10)
+    g.addEdge(7, 11, 10)
+    g.addEdge(11, 7, 10)
 
     # Add links for node 8
-    g.addEdge(8,12, 10)
+    g.addEdge(8, 12, 10)
+    g.addEdge(12, 8, 10)
 
     # Add links for node 9
-    g.addEdge(9,13,20)
-    g.addEdge(9,10,15)
+    g.addEdge(9, 13, 20)
+    g.addEdge(9, 10, 15)
+    g.addEdge(13, 9, 20)
+    g.addEdge(10, 9, 15)
 
     # Add links for node 10
-    g.addEdge(10,11,15)
+    g.addEdge(10, 11, 15)
+    g.addEdge(11, 10, 15)
 
     # Add links for node 11
-    g.addEdge(11,12,15)
+    g.addEdge(11, 12, 15)
+    g.addEdge(12, 11, 15)
 
-    print(g.getEdgeLength(0,1))
-
+    groceryList = [9, 5, 12]
     FWTraversial = FloydWarshallTraverisal(g.getNumVerticies())
 
     # Find all the shortest pairs
@@ -224,9 +273,12 @@ if __name__ == "__main__":
     FWTraversial.findShortestPath(g.getNumVerticies())
 
     # Print shortest path between node 1 and 10
-    print("\nNodes to pass through for path 0 to 10")
-    path = FWTraversial.getPathFor(0,10)
-    for vertex in path:
-        print(vertex)
+    #path = FWTraversial.getPathFor(0, 9)
 
-    print(FWTraversial.getLengthOfPath(g,0,10))
+    #for vertex in path:
+        #print(vertex)
+
+    print(FWTraversial.get_distance_between_verticies(6, 12))
+    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryList))
+
+
