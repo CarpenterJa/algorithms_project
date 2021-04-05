@@ -30,6 +30,34 @@ class Graph:
 
     def getNumVerticies(self):
         return self.V
+
+    def getEdgesForVertex(self, vertex):
+        if(vertex > self.V):
+            return None
+
+        edges = []
+        for edge in self.graph:
+            # Check if the vertex of the edge is what we are looking for
+            if edge[self.GraphEnums.VERTEX.value] == vertex or \
+               edge[self.GraphEnums.LINK.value] == vertex:
+                # Add thie edge to the list of edges
+                edges.append(edge)
+
+        return edges
+
+    def getEdgeLength(self, vertex, link) :
+        edges = self.getEdgesForVertex(vertex)
+
+        # Possible options for each edge
+        # [vertex,link,weight]
+        # [link,vertex,weight]
+        
+        for edge in edges:
+            if (edge[self.GraphEnums.VERTEX.value] == vertex and edge[self.GraphEnums.LINK.value] == link) or \
+               (edge[self.GraphEnums.VERTEX.value] == link and edge[self.GraphEnums.LINK.value] == vertex):
+                return edge[self.GraphEnums.WEIGHT.value]
+
+        return -1
  
 class FloydWarshallTraverisal():
     #https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
