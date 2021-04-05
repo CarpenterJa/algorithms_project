@@ -60,7 +60,6 @@ class Graph:
         return -1
  
 class FloydWarshallTraverisal():
-    #https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
     distances = None
     nextVert = None
     normPrintWidth = 7
@@ -263,7 +262,8 @@ if __name__ == "__main__":
     g.addEdge(11, 12, 15)
     g.addEdge(12, 11, 15)
 
-    groceryList = [9, 5, 12]
+    #groceryList = [2,7, 9, 5, 12]
+    groceryList = [2,3,8,11]
     FWTraversial = FloydWarshallTraverisal(g.getNumVerticies())
 
     # Find all the shortest pairs
