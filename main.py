@@ -171,7 +171,7 @@ class FloydWarshallTraverisal():
         print("List of Permutations:")
         print(list_of_permutations)
         print("Min Distance: \n" + str(min_distance))
-        print("Optimal Permuation of Required Nodes:")
+        print("Optimal Permutation of Required Nodes:")
         print(optimal_path)
         return optimal_path
 
