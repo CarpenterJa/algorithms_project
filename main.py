@@ -77,7 +77,7 @@ class FloydWarshallTraverisal():
                         self.distances[i][j] = distSum
                         self.nextVert[i][j] = self.nextVert[i][k]
     
-    def findShortestPath(self, numVerticies):
+    def printShortestPairs(self, numVerticies):
         print("Matrix shows the distance from each node to another")
         print("*INF means no path between those nodes*\n")
 
@@ -144,32 +144,21 @@ class FloydWarshallTraverisal():
         print("List of Permutations:")
         print(list_of_permutations)
         print("Min Distance: \n" + str(min_distance))
-        print("Optimal Path:")
+        print("Optimal Permuation of Required Nodes:")
         print(optimal_path)
         return optimal_path
 
     def print_final_path(self, must_past_list):
         total_path = []
+        print("Full Path:")
         for index, elem in enumerate(must_past_list):
             if (index + 1 < len(must_past_list)):
                 next_el = must_past_list[index + 1]
                 total_path.append(self.getPathFor(elem, next_el))
         print(total_path)
-        #for vertex in total_path:
-            #print(vertex)
 
     def get_distance_between_verticies(self, vertex, link):
         return self.distances[vertex][link]
-
-    # def getLengthOfPath(self, startVert, endVert):
-    #     # Get path
-    #     path = self.getPathFor(startVert,endVert)
-    #     if not(path == None):
-    #         totalDist = 0
-    #         for step in path:
-    #             totalDist = totalDist + 
-
-
 
 #------------------------------------------------------------------------------        
 # Only run code if main called this file
@@ -241,16 +230,9 @@ if __name__ == "__main__":
     # Find all the shortest pairs
     FWTraversial.findShortestPairs(g)
 
-    # Find the shortest path given a starting index
-    FWTraversial.findShortestPath(g.getNumVerticies())
+    # Print the shortest pairs in a table
+    FWTraversial.printShortestPairs(g.getNumVerticies())
 
-    # Print shortest path between node 1 and 10
-    #path = FWTraversial.getPathFor(0, 9)
-
-    #for vertex in path:
-        #print(vertex)
-
-    print(FWTraversial.get_distance_between_verticies(6, 12))
     FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryList))
 
 
