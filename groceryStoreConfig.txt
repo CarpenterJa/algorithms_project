@@ -1,0 +1,63 @@
+// This file contains information about the grocery store that we are simulating
+numVertex = 14
+
+// This is the template for a vertex
+//V#
+//Type:
+//Food: 
+
+V0
+Type: Enterance
+Food: None
+
+V1
+Type: Fruit
+Food: Banana, Apple, Orange, Strawberry, Raspberry
+
+V2
+Type: Bread
+Food: Bread, Buns
+
+V3
+Type: Italian
+Food: Pasta, Pasta Sauce, Pesto, Pizza Sauce
+
+V4
+Type: Cold Juice
+Food: Orange Juice, Lemonade, Limade
+
+V5
+Type: Produce
+Food: Lettuce, Kale, Spinach, Peppers, Cucumber
+
+V6
+Type: Grains
+Food: Rice, Quinoa, Couscous
+
+V7
+Type: Mexican
+Food: Tortillas, Salsa, Tortilla Chips
+
+V8
+Type: Dairy
+Food: Milk, Coffee Creamer, Butter
+
+V9
+Type: Meat
+Food: Beef, Pork, Chicken, Steak, Sausage
+
+V10
+Type: Cheese
+Food: Chedder, Parmesan, Brie, American
+
+V11
+Type: Spices/Baking
+Food: Flour, Sugar, Pepper, Salt, Oil
+
+V12
+Type: Dairy
+Food: Eggs
+
+V13
+Type: Register
+Food: None

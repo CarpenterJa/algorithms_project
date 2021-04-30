@@ -1,0 +1,7 @@
+// List of food that we need to buy
+Beef
+Milk
+Bread
+Lemonade
+Strawberry
+Salsa
