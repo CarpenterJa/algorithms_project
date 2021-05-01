@@ -173,3 +173,5 @@ class GroceryStore:
     def getGroceryStoreGraph(self):
         return self.groceryStoreGraph
         
+    def getGroceryStoreFoods(self):
+        return self.groceryStoreFoods
