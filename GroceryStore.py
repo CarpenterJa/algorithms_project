@@ -44,12 +44,12 @@ class GroceryStore:
                         print(newLine)
 
                     if "NumVertex" in newLine:
+                        # We found the number of verticies for our graph
                         newLine = newLine.replace("NumVertex:","",1)
                         numVerticies = int(newLine)
-                        output = self.InitVars(numVerticies)
 
-                        g = output[0] 
-                        vertexFoodList = output[1]
+                        # Using the number setup some variables
+                        g,vertexFoodList = self.InitVars(numVerticies)
 
                     elif newLine[0] == 'V':
                         # This line has the vertex number in it
@@ -122,7 +122,6 @@ class GroceryStore:
         listOfEdgesStr = listOfEdgesStr.replace(' ','')
 
         # Split line into array
-        #listOfEdges = listOfEdgesStr.split('[')
         # https://www.geeksforgeeks.org/python-extract-substrings-between-brackets/
         listOfEdges = re.findall(r'\[.*?\]', listOfEdgesStr)
 
@@ -170,6 +169,7 @@ class GroceryStore:
             
         return listOfEdgesNum
 
+    # Functions to get the class variables
     def getGroceryStoreGraph(self):
         return self.groceryStoreGraph
         

@@ -36,12 +36,14 @@ def findNodes (store_array, grocery_list):
 #------------------------------------------------------------------------------
 # Only run code if main called this file
 if __name__ == "__main__":
+    # Create the grocery store from the config file
     groceryStore = GroceryStore("groceryStoreConfig.txt")
 
+    # Parse the grocery list into vertex numbers
     groceryList = CreateGroceryList("groceryList.txt")
     groceryListVertices = findNodes(groceryStore.getGroceryStoreFoods(), groceryList)
 
-    groceryList2 = [2,3,8,11]
+    # Initalize the variables for the traversal method
     FWTraversial = FloydWarshallTraverisal(groceryStore.getGroceryStoreGraph().getNumVerticies())
 
     # Find all the shortest pairs
@@ -52,4 +54,4 @@ if __name__ == "__main__":
     print(groceryList)
 
     print("\nThe optimal path for the grocery list is:")
-    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryListVertices),debugEnabled=debug)
+    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryListVertices))

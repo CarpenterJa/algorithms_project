@@ -115,7 +115,7 @@ class FloydWarshallTraverisal():
 
             if debugEnabled:
                 print(str(total_distance))
-                
+
             total_distance = 0
         
         if debugEnabled:
@@ -126,17 +126,32 @@ class FloydWarshallTraverisal():
             print(optimal_path)
         return optimal_path
 
-    def print_final_path(self, must_past_list, debugEnabled = False):
+    def print_final_path(self, must_past_list):
         total_path = []
 
-        if debugEnabled:
-            print("Full Path:")
+        print("Full Path:")
 
         for index, elem in enumerate(must_past_list):
             if (index + 1 < len(must_past_list)):
                 next_el = must_past_list[index + 1]
                 total_path.append(self.getPathFor(elem, next_el))
+
         print(total_path)
+
+        # Take final path and remove nodes that are repeated
+        # example list [[0, 1], [1, 2], [2, 3, 4]]
+        # the real path would be [0, 1, 2, 3, 4]
+        # because we are already at node 1 so we don't need to repeat it in the next path
+        totalPathFixed = list()
+        if len(total_path) > 1:
+            for vertex in total_path[0]:
+                totalPathFixed.append(vertex)
+
+            for i in range(1,len(total_path)):
+                for vertex in total_path[i][1:]:
+                    totalPathFixed.append(vertex)
+
+            print(totalPathFixed)
 
     def get_distance_between_verticies(self, vertex, link):
         return self.distances[vertex][link]
