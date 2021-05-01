@@ -2,6 +2,22 @@ from collections import defaultdict
 from Graph import Graph
 from FloydWarshallTraversial import FloydWarshallTraverisal
 
+def CreateGroceryList(file_name):
+    grocery_list = list()
+    with open(file_name) as f:
+        eof = False
+        while not eof:
+            new_line = f.readline()
+            if len(new_line) == 0:
+                eof = True
+            elif new_line[0:2] == "//":
+                continue
+            elif len(new_line) > 0 and new_line == '\n':
+                continue
+            else:
+                print(new_line)
+                grocery_list.add(new_line)
+    return grocery_list
 
 def ConfigGroceryStore(fileName):
     # Read in the config file
@@ -117,6 +133,16 @@ def ExtractEdges(configId,configText):
         
     return listOfEdgesNum
 
+
+
+def findNodes (store_array, grocery_list):
+    vertex_array = list()
+    for i in range(len(store_array)):
+        for j in range(len(store_array[i])):
+            for k in range(len(grocery_list)):
+                if store_array(store_array[i][j] == grocery_list[k]):
+                    vertex_array.add(i) # return the row representing the vertex / node
+    return vertex_array
 
 #------------------------------------------------------------------------------        
 # Only run code if main called this file
