@@ -47,7 +47,7 @@ class FloydWarshallTraverisal():
                         self.distances[i][j] = distSum
                         self.nextVert[i][j] = self.nextVert[i][k]
     
-    def printShortestPairs(self, numVerticies):
+    def printShortestPairs(self, numVerticies, debugEnabled = False):
         print("Matrix shows the distance from each node to another")
         print("*INF means no path between those nodes*\n")
 
@@ -93,12 +93,15 @@ class FloydWarshallTraverisal():
 
         return path
 
-    def nodePermutation(self, mustPassNodesList):
+    def nodePermutation(self, mustPassNodesList, debugEnabled = False):
         list_of_permutations = list(permutations(mustPassNodesList))
         list_of_permutations = [list(ele) for ele in list_of_permutations]
         total_distance = 0
         min_distance = math.inf
-        print("Distances of Paths:")
+
+        if debugEnabled:
+            print("Distances of Paths:")
+
         for p in list_of_permutations:
             p.insert(0,0)
             p.append(13)
@@ -109,18 +112,26 @@ class FloydWarshallTraverisal():
             if(total_distance < min_distance):
                 min_distance = total_distance
                 optimal_path = p
-            print(str(total_distance))
+
+            if debugEnabled:
+                print(str(total_distance))
+                
             total_distance = 0
-        print("List of Permutations:")
-        print(list_of_permutations)
-        print("Min Distance: \n" + str(min_distance))
-        print("Optimal Permutation of Required Nodes:")
-        print(optimal_path)
+        
+        if debugEnabled:
+            print("List of Permutations:")
+            print(list_of_permutations)
+            print("Min Distance: \n" + str(min_distance))
+            print("Optimal Permutation of Required Nodes:")
+            print(optimal_path)
         return optimal_path
 
-    def print_final_path(self, must_past_list):
+    def print_final_path(self, must_past_list, debugEnabled = False):
         total_path = []
-        print("Full Path:")
+
+        if debugEnabled:
+            print("Full Path:")
+
         for index, elem in enumerate(must_past_list):
             if (index + 1 < len(must_past_list)):
                 next_el = must_past_list[index + 1]

@@ -1,5 +1,5 @@
 // This file contains information about the grocery store that we are simulating
-numVertex = 14
+NumVertex:14
 
 // This is the template for a vertex
 //V#
@@ -69,7 +69,7 @@ Edges: [10,15],[7,10],[12,15]
 
 V12
 Type: Dairy
-Food: Eggs
+Food: Eggs, Yogurt
 Edges: [11,15],[8,10]
 
 V13
