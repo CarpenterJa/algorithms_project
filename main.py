@@ -1,16 +1,19 @@
 from collections import defaultdict
 from Graph import Graph
 from FloydWarshallTraversial import FloydWarshallTraverisal
-
+import re
 
 def ConfigGroceryStore(fileName):
     # Read in the config file
     # Generate the grocery store from the file
 
+    g = Graph(totalNodes)
+
     # Try to open the file
     with open(fileName) as f:
         # Read until we hit no white space
         endOfFile = False
+        infoReadIn = 0
         while not endOfFile:
             newLine = f.readline()
             if len(newLine) == 0:
@@ -30,18 +33,30 @@ def ConfigGroceryStore(fileName):
                     # This line has the vertex number in it
                     # This will throw an error if  there is more than just a number on this line
                     vertexNum = int(newLine[1:])
+                    infoReadIn += 1
                 elif "Type:" in newLine:
                     # This line contains the category of food
                     foodType = ExtractVertexType("Type:",newLine)
+                    infoReadIn += 1
                 elif "Food:" in newLine:
                     # This line contains the food at this node
                     listOfFoods = ExtractVertexFood("Food:",newLine)
+                    infoReadIn += 1
                 elif "Edges:" in newLine:
                     # This line contains all the edges for this node
                     vertexEdges = ExtractEdges("Edges:",newLine)
+                    infoReadIn += 1
                 else:
                     # Unknown line so throw an error
                     pass
+
+            # If we read in all the information then add the node to our data structures
+            if infoReadIn == 4:
+                for edge in vertexEdges:
+                    g.addEdge(vertexNum,edge[0],edge[1])
+
+                infoReadIn == 0
+
                 
 def ExtractVertexType(configId,configText):
     # Remove Type: from the line
@@ -71,7 +86,9 @@ def ExtractEdges(configId,configText):
     listOfEdgesStr = listOfEdgesStr.replace(' ','')
 
     # Split line into array
-    listOfEdges = listOfEdgesStr.split(',')
+    #listOfEdges = listOfEdgesStr.split('[')
+    # https://www.geeksforgeeks.org/python-extract-substrings-between-brackets/
+    listOfEdges = re.findall(r'\[.*?\]', listOfEdgesStr)
 
     # Take the list of each edge and weight and convert the items to number
     # Then create a list of those edges and weights
@@ -80,7 +97,6 @@ def ExtractEdges(configId,configText):
         foundStart = False
         foundEnd = False
         foundEdge = False
-        foundWeight = False
         tempEdgeWeightPair = list()
         numAsStr = ""
         while len(edge) > 0 and foundEnd == False:
@@ -90,25 +106,26 @@ def ExtractEdges(configId,configText):
             elif foundStart and edge[0] == "]":
                 # Found the end of the edge weight pair
                 foundEnd = True
+
+                # Convert the final number if there are digits
+                if len(numAsStr) > 0:
+                    # Conver the number and add it to the weight slot
+                    tempEdgeWeightPair.append(int(numAsStr))
             elif foundStart:
                 if edge[0].isdigit():
                     # This char is a digit so add it to the value to convert
                     numAsStr += edge[0]
                 else:
                     # This char is not a digit so we should convert
-                    if foundEdge:
+                    if not foundEdge:
                         # Convert the number and add it to the edge slot
                         tempEdgeWeightPair.append(int(numAsStr))
                         foundEdge = True
                         numAsStr = ''
-                    elif foundWeight:
-                        # Conver the number and add it to the weight slot
-                        tempEdgeWeightPair.append(int(numAsStr))
-                        foundWeight = True
-                        numAsStr = ''
                     else:
                         #Error
                         pass
+
             # Remove the first char from the string after each iteration
             edge = edge[1:]
 
