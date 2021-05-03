@@ -8,7 +8,6 @@ Salsa
 Frozen Pizza
 Frozen Chicken
 Chicken
-Milk
 Eggs
 Butter
 Seasoning
