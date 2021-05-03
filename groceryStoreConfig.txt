@@ -1,5 +1,5 @@
 // This file contains information about the grocery store that we are simulating
-NumVertex:14
+NumVertex:21
 
 // This is the template for a vertex
 //V#
@@ -10,69 +10,104 @@ NumVertex:14
 V0
 Type: Enterance
 Food: None
-Edges: [1,20]
+Edges: [1,10],[7,10],[8,15],[13,20]
 
 V1
 Type: Fruit
 Food: Banana, Apple, Orange, Strawberry, Raspberry
-Edges: [1,20],[13,15],[2,15],[5,10]
+Edges: [0,10],[2,10],[7,10]
 
 V2
-Type: Bread
-Food: Bread, Buns
-Edges: [1,15],[6,10],[3,15]
-
-V3
-Type: Italian
-Food: Pasta, Pasta Sauce, Pesto, Pizza Sauce
-Edges: [2,15],[7,10],[4,15]
-
-V4
-Type: Cold Juice
-Food: Orange Juice, Lemonade, Limade
-Edges: [3,15],[8,10]
-
-V5
 Type: Produce
 Food: Lettuce, Kale, Spinach, Peppers, Cucumber
-Edges: [1,10],[9,10]
+Edges: [1,10],[3,10]
+
+V3
+Type: Cheese
+Food: Chedder, Parmesan, Brie, American
+Edges: [2,10],[4,10],[5,15]
+
+V4
+Type: Meat
+Food: Beef, Pork, Chicken, Steak, Sausage
+Edges: [3,10],[19,10],[5,15]
+
+V5
+Type: Bread
+Food: Bread, Buns
+Edges: [3,15],[6,10],[10,15],[4,15]
 
 V6
 Type: Grains
 Food: Rice, Quinoa, Couscous
-Edges: [2,10],[10,10]
+Edges: [5,10],[7,10]
 
 V7
-Type: Mexican
-Food: Tortillas, Salsa, Tortilla Chips
-Edges: [3,10],[11,10]
+Type: Cans
+Food: Can of Soup, Can of Beans, Can of Peas, Can of Corn
+Edges: [0,10],[6,10],[1,10],[8,10]
 
 V8
-Type: Dairy
-Food: Milk, Coffee Creamer, Butter
-Edges: [4,10],[12,10]
+Type: Mexican
+Food: Tortillas, Salsa, Tortilla Chips
+Edges: [0,15],[9,10],[7,10],[13,10]
 
 V9
-Type: Meat
-Food: Beef, Pork, Chicken, Steak, Sausage
-Edges: [13,20],[5,10],[10,15]
+Type: Italian
+Food: Pasta, Pasta Sauce, Pesto, Pizza Sauce
+Edges: [9,10],[10,10]
 
 V10
-Type: Cheese
-Food: Chedder, Parmesan, Brie, American
-Edges: [9,15],[6,10],[11,15]
+Type: Asian
+Food: Soy Sauce, Wasabi, Coconut Milk, Udon
+Edges: [9,10],[5,15],[11,15]
 
 V11
-Type: Spices/Baking
-Food: Flour, Sugar, Pepper, Salt, Oil
-Edges: [10,15],[7,10],[12,15]
+Type: Spices
+Food: Flour, Sugar, Pepper, Salt
+Edges: [10,15],[12,10],[16,15],[17,15]
 
 V12
-Type: Dairy
-Food: Eggs, Yogurt
-Edges: [11,15],[8,10]
+Type: Oils
+Food: Olive Oil, Canola Oil, Coconut Oil, Vegitable Oil
+Edges: [11,10],[12,10]
 
 V13
+Type: Home Goods
+Food: Bleach, Windex, Air Fresheners, Paper Towels, Toilet Paper
+Edges: [12,10],[0,25],[8,10],[14,10]
+
+V14
+Type: Frozen Meals
+Food: Frozen Chicken, Frozen Burritos, Frozen Mac and Cheese
+Edges: [20,10],[15,10],[13,10]
+
+V15
+Type: Frozen Fruits and Produce
+Food: Frozen Corn, Frozen Peas, Frozen Berries, Frozen Broccoli
+Edges: [14,10],[16,10]
+
+V16
+Type: Frozen Treats
+Food: Ice Cream, Popsicles
+Edges: [15,10],[11,15],[17,10]
+
+V17
+Type: Cold Juice
+Food: Orange Juice, Lemonade, Limade, Cranberry Juice
+Edges: [16,10],[18,10],[11,15]
+
+V18
+Type: Dairy
+Food: Eggs, Yogurt
+Edges: [17,10],[19,10]
+
+V19
+Type: Dairy
+Food: Milk, Coffee Creamer, Butter
+Edges: [4,10],[18,10]
+
+V20
 Type: Register
 Food: None
-Edges: [1,15],[9,20]
+Edges: [0,30],[14,10]

@@ -93,7 +93,7 @@ class FloydWarshallTraverisal():
 
         return path
 
-    def nodePermutation(self, mustPassNodesList, debugEnabled = False):
+    def nodePermutation(self, mustPassNodesList,startVertex, endVertex, debugEnabled = False):
         list_of_permutations = list(permutations(mustPassNodesList))
         list_of_permutations = [list(ele) for ele in list_of_permutations]
         total_distance = 0
@@ -103,8 +103,8 @@ class FloydWarshallTraverisal():
             print("Distances of Paths:")
 
         for p in list_of_permutations:
-            p.insert(0,0)
-            p.append(13)
+            p.insert(0,startVertex)
+            p.append(endVertex)
             for index, elem in enumerate(p):
                 if (index + 1 < len(p)):
                     next_el = p[index + 1]

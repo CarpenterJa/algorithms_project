@@ -54,4 +54,4 @@ if __name__ == "__main__":
     print(groceryList)
 
     print("\nThe optimal path for the grocery list is:")
-    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryListVertices))
+    FWTraversial.print_final_path(FWTraversial.nodePermutation(groceryListVertices,0,20))
