@@ -29,8 +29,12 @@ def findNodes (store_array, grocery_list):
     for i in range(len(store_array)):
         for j in range(len(store_array[i])):
             for k in range(len(grocery_list)):
+                # If the food item is in this row then we store the vertex
                 if store_array[i][j] == grocery_list[k]:
-                    vertex_array.append(i) # return the row representing the vertex / node
+                    # We do not want to add the same nodes twice 
+                    # becuase we are already visiting it
+                    if not (i in vertex_array):
+                        vertex_array.append(i) # return the row representing the vertex / node
     return vertex_array
 
 #------------------------------------------------------------------------------
