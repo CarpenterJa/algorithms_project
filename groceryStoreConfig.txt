@@ -8,23 +8,23 @@ NumVertex:21
 //Edges: [Vertex,Weight]
 
 V0
-Type: Enterance
+Type: Entrance
 Food: None
 Edges: [1,10],[7,10],[8,15],[13,20]
 
 V1
 Type: Fruit
-Food: Banana, Apple, Orange, Strawberry, Raspberry
+Food: Banana, Apple, Orange, Strawberry, Raspberry, Pineapple, Tomato
 Edges: [0,10],[2,10],[7,10]
 
 V2
 Type: Produce
-Food: Lettuce, Kale, Spinach, Peppers, Cucumber
+Food: Lettuce, Kale, Spinach, Peppers, Cucumber, Potatoes
 Edges: [1,10],[3,10]
 
 V3
 Type: Cheese
-Food: Chedder, Parmesan, Brie, American
+Food: Cheddar, Parmesan, Brie, American, Mozzarella
 Edges: [2,10],[4,10],[5,15]
 
 V4
@@ -54,22 +54,22 @@ Edges: [0,15],[9,10],[7,10],[13,10]
 
 V9
 Type: Italian
-Food: Pasta, Pasta Sauce, Pesto, Pizza Sauce
+Food: Pasta, Pasta Sauce, Pesto, Pizza Sauce, Boxed Mac and Cheese
 Edges: [9,10],[10,10]
 
 V10
 Type: Asian
-Food: Soy Sauce, Wasabi, Coconut Milk, Udon
+Food: Soy Sauce, Wasabi, Coconut Milk
 Edges: [9,10],[5,15],[11,15]
 
 V11
 Type: Spices
-Food: Flour, Sugar, Pepper, Salt
+Food: Flour, Sugar, Pepper, Salt, Seasoning
 Edges: [10,15],[12,10],[16,15],[17,15]
 
 V12
 Type: Oils
-Food: Olive Oil, Canola Oil, Coconut Oil, Vegitable Oil
+Food: Olive Oil, Canola Oil, Coconut Oil, Vegetable Oil
 Edges: [11,10],[12,10]
 
 V13
@@ -79,7 +79,7 @@ Edges: [12,10],[0,25],[8,10],[14,10]
 
 V14
 Type: Frozen Meals
-Food: Frozen Chicken, Frozen Burritos, Frozen Mac and Cheese
+Food: Frozen Chicken, Frozen Burritos, Frozen Mac and Cheese, Frozen Pizza
 Edges: [20,10],[15,10],[13,10]
 
 V15
@@ -89,17 +89,17 @@ Edges: [14,10],[16,10]
 
 V16
 Type: Frozen Treats
-Food: Ice Cream, Popsicles
+Food: Ice Cream, Popsicles, Fudgesicle
 Edges: [15,10],[11,15],[17,10]
 
 V17
 Type: Cold Juice
-Food: Orange Juice, Lemonade, Limade, Cranberry Juice
+Food: Orange Juice, Lemonade, Limade, Cranberry Juice, Apple Juice
 Edges: [16,10],[18,10],[11,15]
 
 V18
 Type: Dairy
-Food: Eggs, Yogurt
+Food: Eggs, Yogurt, Sour Cream
 Edges: [17,10],[19,10]
 
 V19

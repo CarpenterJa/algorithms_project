@@ -5,3 +5,10 @@ Bread
 Lemonade
 Strawberry
 Salsa
+Frozen Pizza
+Frozen Chicken
+Chicken
+Milk
+Eggs
+Butter
+Seasoning
